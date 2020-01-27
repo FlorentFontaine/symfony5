@@ -8,4 +8,17 @@
         <h1>L'Agence du Web<h1>
     </div>
 </div>
+
+<div class= "container">
+    <h2> les derniers biens </h2>
+    <div class="row flex">
+     {% for property in propertie %}     </div>
+
+       <p> <a href="{{ path( 'property.show', {id: property.id , slug: property.slug} )}}"> {{ property.title }}</a></p>
+       <div>
+    <p class ="card-text"> {{ property.city}} ({{property.postalCode}})</b>     </div>
+
+     <div class="text-primary">{{ property.price}}</div>
+    {% endfor %}
+
 {% endblock %}

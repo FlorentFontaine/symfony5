@@ -14,11 +14,31 @@ use Doctrine\Common\Persistence\ManagerRegistry;
  */
 class PropertyRepository extends ServiceEntityRepository
 {
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Property::class);
     }
 
+        public function findAllVisible(){
+            return $this->createVisibleQuery()
+            ->getQuery()
+            ->getResult()
+        ;
+        }
+
+        public function findLatest(){
+            return $this->createVisibleQuery()
+            ->setMaxResults(4)
+            ->getQuery()
+            ->getResult()
+        ;
+        }
+
+    private function createVisibleQuery(){
+        return $this->createQueryBuilder('p')
+                    ->where('p.sold = false');
+    }
     // /**
     //  * @return Property[] Returns an array of Property objects
     //  */

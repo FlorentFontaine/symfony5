@@ -1,10 +1,39 @@
 {% extends 'base.html.twig' %}
 
-{% block Title %}Tout nos bien{% endblock %}   
+{% block Title %}Agence McFly{% endblock %}   
 {% block body %}
-<div class="jumbotron txt-center">
-    <div class="container">
-        <h1>Voir tout nos bien<h1>
+
+<div class="jumbotron txt-center m-t-5">
+    <div class="container mt-4">
+        <h1>Gerer les biens<div>
     </div>
 </div>
+    <h1></h1>
+        <table class="container mt-4">
+            <thead>
+                <tr>
+                    <th>Titre du bien</th>
+                    <th>action</th>
+                </tr>
+            </thead>
+            <tbody>
+            {%for property in properties %}
+                <td>{{property.title}}</dt>
+                <td>
+                    <a href="{{path('admin.property.edit', {id: property.id})}}" class="btn btn-secondary">Editer</a>
+                </td>
+            {% endfor %}%}
+            </tbody>
+        </table>
+
+
+     {% for property in properties %}     </div>
+
+       <p> <a href="{{ path( 'property.show', {id: property.id , slug: property.slug} )}}"> {{ property.title }}</a></p>
+       <div>
+    <p class ="card-text"> {{ property.city}} ({{property.postalCode}})</b>     </div>
+
+     <div class="text-primary">{{ property.price}}</div>
+    {% endfor %}
+
 {% endblock %}
